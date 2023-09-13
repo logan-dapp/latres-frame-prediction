@@ -39,7 +39,7 @@ class HatmanDownloader:
 def get_all_videos_in_channel(channel_id):
     """Code from Stian on StackOverflow"""
 
-    api_key = open('../DO NOT SEND TO GITHUB/api_key.txt').read()
+    api_key = open(PUT API KEY HERE).read()
 
     base_video_url = 'https://www.youtube.com/watch?v='
     base_search_url = 'https://www.googleapis.com/youtube/v3/search?'
