@@ -5,20 +5,21 @@ import os
 import random
 import shutil
 import time
+from typing import List
 
-HATMAN_VIDEOS = eval(open('hatman_videos.txt').read())
+HATMAN_VIDEOS: List[str] = eval(open('hatman_videos.txt').read())
 
-def random_name():
+def random_name() -> str:
     return ''.join([random.choice('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_') for _ in range(50)])
 
 class HatmanDownloader:
-    def __init__(self, data_folder='training_videos'):
+    def __init__(self, data_folder: str = 'training_videos'):
         self.videos = HATMAN_VIDEOS
         self.data_folder = data_folder
         if not os.path.exists(self.data_folder):
             os.mkdir(self.data_folder)
 
-    def __next__(self):
+    def __next__(self) -> str:
         try:
             video = self.videos.pop(0)
             print(f'Fetching {video}...')
@@ -36,10 +37,10 @@ class HatmanDownloader:
         except IndexError:
             raise StopIteration
 
-def get_all_videos_in_channel(channel_id):
+def get_all_videos_in_channel(channel_id: str) -> List[str]:
     """Code from Stian on StackOverflow"""
 
-    api_key = open(PUT+API+KEY+HERE).read()
+    api_key = PUT+API+KEY+HERE
 
     base_video_url = 'https://www.youtube.com/watch?v='
     base_search_url = 'https://www.googleapis.com/youtube/v3/search?'
